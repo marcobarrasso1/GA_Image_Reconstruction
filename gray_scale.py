@@ -171,8 +171,8 @@ def GP():
             print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses)}")
             frames.append(open_cv_image)
 
-    imageio.mimsave("output_gif_RGB.gif", frames, durantion=0.1)
-    cv2.imwrite("output_best.jpg", open_cv_image) 
+    imageio.mimsave("gifs/output_gif.gif", frames, durantion=0.1)
+    cv2.imwrite("images/best_image.jpg", open_cv_image) 
 
 
     best_ind = np.argmax(fitnesses)
