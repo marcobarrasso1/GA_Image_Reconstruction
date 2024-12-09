@@ -1,5 +1,6 @@
 from arg_parse import get_args
 from utils import *
+import time 
 
 args = get_args()
 
@@ -8,10 +9,11 @@ print(target_image.size)
 
 population = create_population(args.population_size, target_height=args.target_height, target_width=args.target_width, size=args.size)
 frames = []
-    
+
+start = time.time()
 for generation in range(args.generation):
+        
     fitnesses = []
-    
     for ind in population:
         fitness = evaluate_fitness(ind, target_image)
         fitnesses.append(fitness)
@@ -45,8 +47,10 @@ for generation in range(args.generation):
     best_ind = (population[elites_ids[-1]])
     
     if generation % 100 == 0:
-        print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses)}")
         frames.append(best_ind)
+        end = time.time()
+        print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses)}, time per 100 generations: {(end - start):.2f}")
+        start = time.time()
 
 imageio.mimsave("gifs/output_gif.gif", frames)
 plt.imsave("images/best_image.jpg", best_ind) 

@@ -3,11 +3,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 from skimage.metrics import peak_signal_noise_ratio as psnr
-#import matplotlib.pyplot as plt
 import imageio
 import cv2
 from skimage.metrics import structural_similarity as ssim
-import colour
 
 def random_color():
     return "#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
@@ -58,8 +56,7 @@ def create_population(population_size, target_height, target_width, size):
 
 
 def evaluate_fitness(individual, target):
-    #return psnr(individual, np.array(target))
-    return ssim(individual, np.array(target))
+    return psnr(individual, np.array(target))
     
 
 def vertical_swap(parent1, parent2):
@@ -107,8 +104,7 @@ def get_parent(current_population, current_fitness, tournament_size):
     
     ids = np.random.choice(len(current_population), tournament_size, replace=True)
     candidates_fitness = [current_fitness[i] for i in ids]
-    #tournament_winner_id = np.argmax(candidates_fitness)
-    tournament_winner_id = np.argmin(candidates_fitness)
+    tournament_winner_id = np.argmax(candidates_fitness)
     population_winner_id = ids[tournament_winner_id]
     winner = current_population[population_winner_id]
     
@@ -151,61 +147,4 @@ def crossover(ind1, ind2):
         return pixelwise_change(ind1, ind2)
     
     
-def GP():
-    population = create_population(50)
-    elite_count = 3
-    crossover_prob = 0.9
-    
-    frames = []
-    
-    for generation in range(15000):
-        fitnesses = []
-        
-        for ind in population:
-            fitness = evaluate_fitness(ind)
-            fitnesses.append(fitness)
-        
-        #elites_ids = np.argsort(fitnesses)[-elite_count:]
-        elites_ids = np.argsort(fitnesses)[:elite_count]
-        new_population = []
-        tournament_size = max(2, generation // 1000)
-        #tournament_size = 5
-        
-        for i in range(50):
-            
-            parent1 = get_parent(population, fitnesses, tournament_size=tournament_size)
-            parent2 = get_parent(population, fitnesses, tournament_size=tournament_size)
-            
-            if random.random() < crossover_prob:
-                child = crossover(parent1, parent2)
-            else:
-                child = random.choice([parent1, parent2])
-            
-            rand = random.random()
-            if rand < 0.1:
-                child = mutate(child)
-                
-            new_population.append(child)
-            
-        for id in elites_ids:
-            new_population.append(population[id])
-        
-        population = new_population
-            
-        best_ind = (population[elites_ids[-1]])
-        
-        if generation % 100 == 0:
-            print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses)}")
-            frames.append(best_ind)
-
-    imageio.mimsave("gifs/output_gif.gif", frames)
-    plt.imsave("images/best_image.jpg", best_ind) 
-
-
-    best_ind = np.argmax(fitnesses)
-    image = Image.fromarray(population[best_ind])
-
-        
-#if __name__ == "__main__":
- #   GP()
 
