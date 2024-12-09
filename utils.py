@@ -1,4 +1,5 @@
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
+import string
 import matplotlib.pyplot as plt
 import numpy as np
 import random
@@ -18,6 +19,27 @@ def add_rectangle(image, target_height, target_width, size):
     image.rectangle([(x,y), (x+rect_width, y+rect_height)], fill=random_color())  
     
 
+def add_text(image, target_height, target_width, size):
+    font = ImageFont.truetype("arial.ttf", size)
+    text = random.choice(string.ascii_uppercase)
+
+    x, y = random.randint(0,target_width-1), random.randint(0,target_height-1)
+    
+    image.text((x, y), text, fill=random_color(), font=font) 
+    
+
+def add_circle(image, target_height, target_width, radius):
+    circle_center = (random.randint(0, 255), random.randint(0, 255))  # Center of the circle
+    radius = random.randint(5, 14)
+
+    left_up_point = (circle_center[0] - radius, circle_center[1] - radius)
+    right_down_point = (circle_center[0] + radius, circle_center[1] + radius)
+
+    # Draw the circle
+    image.ellipse([left_up_point, right_down_point], outline="blue", width=3)
+    
+    
+    
 def add_constant(ind):
     n_pixels = 50
     
@@ -39,7 +61,7 @@ def blending(ind1, ind2):
     return np.array(Image.blend(image1, image2, alpha=alpha))
 
     
-def create_population(population_size, target_height, target_width, size):
+def create_population(population_size, target_height, target_width, size, type):
     initial_population = []
     
     for _ in range(population_size):
@@ -48,7 +70,10 @@ def create_population(population_size, target_height, target_width, size):
         n_rectangles = random.randint(3, 6)
         
         for _ in range(n_rectangles):
-            add_rectangle(img, target_height, target_width, size)
+            if type == 1:
+                add_rectangle(img, target_height, target_width, size)
+            if type == 2:
+                add_text(img, target_height, target_width, size)
             
         initial_population.append(np.array(new_image))   
         
@@ -111,15 +136,17 @@ def get_parent(current_population, current_fitness, tournament_size):
     return winner 
 
 
-def mutate(ind, size):
+def mutate(ind, size, type):
     rand = random.random()
     
     if rand < 0.7:
         ind_image = Image.fromarray(ind)
         _ = ImageDraw.Draw(ind_image)
         
-        for i in range(1):
+        if type == 0:
             add_rectangle(_, ind.shape[1], ind.shape[0], size)
+        if type == 1:
+            add_text(_, ind.shape[1], ind.shape[0], size)
             
         return np.array(ind_image)
     else:
