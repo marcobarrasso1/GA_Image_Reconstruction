@@ -47,13 +47,26 @@ def add_line(image, target_height, target_width):
     image.line([(y1,x1), (y1 + random.randint(0, 20), x1 + random.randint(0, 20))], fill=random_color(), width=thickness_value)
     
     
+def add_triangle(image, target_height, target_width):
+    region = random.randint(3, 30)
+    region_x = random.randint(0, target_width-1)
+    region_y = random.randint(0, target_height-1)
+
+    vertices = []
+    for i in range(3):
+        vertices.append((random.randint(region_x - region, region_x + region),
+                    random.randint(region_y - region, region_y + region)))
+        
+    image.polygon(vertices, fill=random_color())
+    
+    
 def add_constant(ind):
     n_pixels = 50
     
     for i in range(n_pixels):
         x = random.randint(0, ind.shape[0]-1)
         y = random.randint(0, ind.shape[1]-1)
-        channel = random.randint(0, 3)  # Random RGBA channel
+        channel = random.randint(0, 2)  # Random RGBA channel
         ind[x, y, channel] = np.clip(
             int(ind[x, y, channel]) + random.randint(-10, 10), 0, 255
         )      
@@ -72,7 +85,7 @@ def create_population(population_size, target_height, target_width, size, type):
     initial_population = []
     
     for _ in range(population_size):
-        new_image = Image.new("RGBA", (target_height, target_width), color=random_color())
+        new_image = Image.new("RGB", (target_height, target_width), color=random_color())
         img = ImageDraw.Draw(new_image)
         n_shapes = random.randint(3, 6)
         
@@ -85,6 +98,8 @@ def create_population(population_size, target_height, target_width, size, type):
                 add_circle(img, target_height, target_width, size)
             if type == 3:
                 add_line(img, target_height, target_width)
+            if type == 4:
+                add_triangle(img, target_height, target_width)
             
         initial_population.append(np.array(new_image))   
         
@@ -162,6 +177,8 @@ def mutate(ind, size, type):
             add_circle(_, ind.shape[1], ind.shape[0], size)
         if type == 3:
             add_line(_, ind.shape[1], ind.shape[0])
+        if type == 4:
+            add_triangle(_, ind.shape[1], ind.shape[0])
         return np.array(ind_image)
     else:
         return add_constant(ind)
@@ -183,7 +200,6 @@ def crossover(ind1, ind2):
     
     elif rand < 0.95:  
         return blending(ind1, ind2)
-    
     else:  
         return pixelwise_change(ind1, ind2)
     
