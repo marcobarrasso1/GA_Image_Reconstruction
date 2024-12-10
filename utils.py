@@ -29,15 +29,22 @@ def add_text(image, target_height, target_width, size):
     
 
 def add_circle(image, target_height, target_width, radius):
-    circle_center = (random.randint(0, 255), random.randint(0, 255))  # Center of the circle
-    radius = random.randint(5, 14)
+    circle_center = (random.randint(0, target_height-1), random.randint(0, target_width-1))  # Center of the circle
+    radius = random.randint(2, 7)
 
     left_up_point = (circle_center[0] - radius, circle_center[1] - radius)
     right_down_point = (circle_center[0] + radius, circle_center[1] + radius)
 
     # Draw the circle
-    image.ellipse([left_up_point, right_down_point], outline="blue", width=3)
+    image.ellipse([left_up_point, right_down_point], fill=random_color())
     
+    
+def add_line(image, target_height, target_width):
+    x1, y1 = random.randint(0,target_width-1), random.randint(0,target_height-1)
+    #x2, y2 = random.randint(0,target_width-1), random.randint(0,target_height-1)
+    
+    thickness_value = random.randint(1, 2)
+    image.line([(y1,x1), (y1 + random.randint(0, 20), x1 + random.randint(0, 20))], fill=random_color(), width=thickness_value)
     
     
 def add_constant(ind):
@@ -67,13 +74,17 @@ def create_population(population_size, target_height, target_width, size, type):
     for _ in range(population_size):
         new_image = Image.new("RGBA", (target_height, target_width), color=random_color())
         img = ImageDraw.Draw(new_image)
-        n_rectangles = random.randint(3, 6)
+        n_shapes = random.randint(3, 6)
         
-        for _ in range(n_rectangles):
-            if type == 1:
+        for _ in range(n_shapes):
+            if type == 0:
                 add_rectangle(img, target_height, target_width, size)
-            if type == 2:
+            if type == 1:
                 add_text(img, target_height, target_width, size)
+            if type == 2:
+                add_circle(img, target_height, target_width, size)
+            if type == 3:
+                add_line(img, target_height, target_width)
             
         initial_population.append(np.array(new_image))   
         
@@ -147,7 +158,10 @@ def mutate(ind, size, type):
             add_rectangle(_, ind.shape[1], ind.shape[0], size)
         if type == 1:
             add_text(_, ind.shape[1], ind.shape[0], size)
-            
+        if type == 2:
+            add_circle(_, ind.shape[1], ind.shape[0], size)
+        if type == 3:
+            add_line(_, ind.shape[1], ind.shape[0])
         return np.array(ind_image)
     else:
         return add_constant(ind)

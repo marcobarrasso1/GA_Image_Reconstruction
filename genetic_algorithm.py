@@ -49,9 +49,10 @@ for generation in range(args.generation):
     if generation % 100 == 0:
         frames.append(best_ind)
         end = time.time()
-        print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses)}, time per 100 generations: {(end - start):.2f}")
+        #print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses)}, time per 100 generations: {(end - start):.2f}")
+        print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses):.2f}")
         start = time.time()
 
-imageio.mimsave("gifs/output_gif_letter10.gif", frames)
+imageio.mimsave("gifs/output_lines30k.gif", frames)
 plt.imsave("images/best_image.jpg", best_ind) 
 
