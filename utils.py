@@ -19,7 +19,7 @@ def add_rectangle(image, target_height, target_width, size):
     x, y = random.randint(0, target_width-1), random.randint(0, target_height-1)
     rect_width, rect_height = random.randint(3, size), random.randint(3, size) 
     
-    image.rectangle([(x,y), (x+rect_width, y+rect_height)], fill=random_color())  
+    image.rectangle([(x,y), (x+rect_width, y+rect_height)], fill=random_color2())  
     
 
 def add_text(image, target_height, target_width, size):
@@ -29,7 +29,7 @@ def add_text(image, target_height, target_width, size):
 
     x, y = random.randint(0,target_width-1), random.randint(0,target_height-1)
     
-    image.text((x, y), text, fill=random_color(), font=font) 
+    image.text((x, y), text, fill=random_color2(), font=font) 
     
 
 def add_circle(image, target_height, target_width, radius):
@@ -40,7 +40,7 @@ def add_circle(image, target_height, target_width, radius):
     right_down_point = (circle_center[0] + radius, circle_center[1] + radius)
 
     # Draw the circle
-    image.ellipse([left_up_point, right_down_point], fill=random_color())
+    image.ellipse([left_up_point, right_down_point], fill=random_color2())
     
     
 def add_line(image, target_height, target_width):
@@ -48,7 +48,7 @@ def add_line(image, target_height, target_width):
     #x2, y2 = random.randint(0,target_width-1), random.randint(0,target_height-1)
     
     thickness_value = random.randint(1, 2)
-    image.line([(y1,x1), (y1 + random.randint(0, 20), x1 + random.randint(0, 20))], fill=random_color(), width=thickness_value)
+    image.line([(y1,x1), (y1 + random.randint(0, 20), x1 + random.randint(0, 20))], fill=random_color2(), width=thickness_value)
     
     
 def add_triangle(image, target_height, target_width):
@@ -89,7 +89,7 @@ def create_population(population_size, target_height, target_width, size, type):
     initial_population = []
     
     for _ in range(population_size):
-        new_image = Image.new("RGBA", (target_height, target_width), color=random_color())
+        new_image = Image.new("RGBA", (target_height, target_width), color=random_color2())
         img = ImageDraw.Draw(new_image)
         n_shapes = random.randint(3, 6)
         
