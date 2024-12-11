@@ -11,6 +11,9 @@ from skimage.metrics import structural_similarity as ssim
 def random_color():
     return "#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
 
+def random_color2():
+    return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
+
 # square side = 5
 def add_rectangle(image, target_height, target_width, size):
     x, y = random.randint(0, target_width-1), random.randint(0, target_height-1)
@@ -20,7 +23,8 @@ def add_rectangle(image, target_height, target_width, size):
     
 
 def add_text(image, target_height, target_width, size):
-    font = ImageFont.truetype("arial.ttf", size)
+    font_size = random.randint(5, size)
+    font = ImageFont.truetype("arial.ttf", font_size)
     text = random.choice(string.ascii_uppercase)
 
     x, y = random.randint(0,target_width-1), random.randint(0,target_height-1)
@@ -30,7 +34,7 @@ def add_text(image, target_height, target_width, size):
 
 def add_circle(image, target_height, target_width, radius):
     circle_center = (random.randint(0, target_height-1), random.randint(0, target_width-1))  # Center of the circle
-    radius = random.randint(2, 7)
+    radius = random.randint(2, 17)
 
     left_up_point = (circle_center[0] - radius, circle_center[1] - radius)
     right_down_point = (circle_center[0] + radius, circle_center[1] + radius)
@@ -57,7 +61,7 @@ def add_triangle(image, target_height, target_width):
         vertices.append((random.randint(region_x - region, region_x + region),
                     random.randint(region_y - region, region_y + region)))
         
-    image.polygon(vertices, fill=random_color())
+    image.polygon(vertices, fill=random_color2())
     
     
 def add_constant(ind):
@@ -66,7 +70,7 @@ def add_constant(ind):
     for i in range(n_pixels):
         x = random.randint(0, ind.shape[0]-1)
         y = random.randint(0, ind.shape[1]-1)
-        channel = random.randint(0, 2)  # Random RGBA channel
+        channel = random.randint(0, 3)  # Random RGBA channel
         ind[x, y, channel] = np.clip(
             int(ind[x, y, channel]) + random.randint(-10, 10), 0, 255
         )      
@@ -85,7 +89,7 @@ def create_population(population_size, target_height, target_width, size, type):
     initial_population = []
     
     for _ in range(population_size):
-        new_image = Image.new("RGB", (target_height, target_width), color=random_color())
+        new_image = Image.new("RGBA", (target_height, target_width), color=random_color())
         img = ImageDraw.Draw(new_image)
         n_shapes = random.randint(3, 6)
         
