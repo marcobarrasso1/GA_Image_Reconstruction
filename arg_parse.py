@@ -9,7 +9,7 @@ def get_args():
     parser.add_argument('--n_elites', type=int, default=3)
     parser.add_argument("--target_height", type=int, default=256)
     parser.add_argument('--target_width', type=int, default=256)
-    parser.add_argument('--size', type=int, default=35)
+    parser.add_argument('--size', type=int, default=23)
     parser.add_argument("--shape", type=int, default=0)
     parser.add_argument("--gif", type=str, default="")
     args = parser.parse_args()

@@ -17,7 +17,7 @@ def random_color2():
 # square side = 5
 def add_rectangle(image, target_height, target_width, size):
     x, y = random.randint(0, target_width-1), random.randint(0, target_height-1)
-    rect_width, rect_height = random.randint(3, size), random.randint(3, size) 
+    rect_width, rect_height = random.randint(4, size), random.randint(4, size) 
     
     image.rectangle([(x,y), (x+rect_width, y+rect_height)], fill=random_color2())  
     
@@ -34,7 +34,7 @@ def add_text(image, target_height, target_width, size):
 
 def add_circle(image, target_height, target_width, radius):
     circle_center = (random.randint(0, target_height-1), random.randint(0, target_width-1))  # Center of the circle
-    radius = random.randint(2, 17)
+    radius = random.randint(2, 16)
 
     left_up_point = (circle_center[0] - radius, circle_center[1] - radius)
     right_down_point = (circle_center[0] + radius, circle_center[1] + radius)
@@ -52,7 +52,7 @@ def add_line(image, target_height, target_width):
     
     
 def add_triangle(image, target_height, target_width):
-    region = random.randint(3, 30)
+    region = random.randint(15, 35)
     region_x = random.randint(0, target_width-1)
     region_y = random.randint(0, target_height-1)
 
@@ -91,7 +91,7 @@ def create_population(population_size, target_height, target_width, size, type):
     for _ in range(population_size):
         new_image = Image.new("RGBA", (target_height, target_width), color=random_color2())
         img = ImageDraw.Draw(new_image)
-        n_shapes = random.randint(3, 6)
+        n_shapes = random.randint(5, 10)
         
         for _ in range(n_shapes):
             if type == 0:
@@ -169,7 +169,7 @@ def get_parent(current_population, current_fitness, tournament_size):
 def mutate(ind, size, type):
     rand = random.random()
     
-    if rand < 0.7:
+    if rand < 0.8:
         ind_image = Image.fromarray(ind)
         _ = ImageDraw.Draw(ind_image)
         
@@ -187,11 +187,11 @@ def mutate(ind, size, type):
     else:
         return add_constant(ind)
     
-    
+
 def crossover(ind1, ind2):
     rand = random.random()
     
-    if rand < 0.3:
+    if rand < 0.2:
         rand2 = random.randint(0, 3)
         if rand2 == 0:
             return random_vertical_swap(ind1, ind2)
@@ -202,10 +202,10 @@ def crossover(ind1, ind2):
         else:
             return horizontal_swap(ind1, ind2)
     
-    elif rand < 0.95:  
+    elif rand < 0.65:  
         return blending(ind1, ind2)
     else:  
         return pixelwise_change(ind1, ind2)
-    
+
     
 

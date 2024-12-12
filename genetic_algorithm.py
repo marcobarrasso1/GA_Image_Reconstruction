@@ -4,7 +4,7 @@ import time
 
 args = get_args()
 
-target_image = Image.open("images/darwin.jpg").convert("RGBA").resize((args.target_height, args.target_width))
+target_image = Image.open("images/mona_lisa.png").convert("RGBA").resize((args.target_height, args.target_width))
 print(target_image.size)
 
 population = create_population(args.population_size, target_height=args.target_height, target_width=args.target_width, size=args.size, type=args.shape)
@@ -50,9 +50,11 @@ for generation in range(args.generation):
         frames.append(best_ind)
         end = time.time()
         #print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses)}, time per 100 generations: {(end - start):.2f}")
-        print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses):.2f}")
+        #print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses):.2f}")
+        print(sum(fitnesses)/len(fitnesses))
         start = time.time()
-
+        
+'''
 imageio.mimsave(f"gifs/{args.gif}.gif", frames)
 plt.imsave("images/best_image.png", best_ind) 
-
+'''
