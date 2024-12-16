@@ -23,7 +23,7 @@ def add_rectangle(image, target_height, target_width, size):
     
 
 def add_text(image, target_height, target_width, size):
-    font_size = random.randint(5, size)
+    font_size = random.randint(7, size)
     font = ImageFont.truetype("arial.ttf", font_size)
     text = random.choice(string.ascii_uppercase)
 
@@ -169,10 +169,9 @@ def get_parent(current_population, current_fitness, tournament_size):
 def mutate(ind, size, type):
     rand = random.random()
     
-    if rand < 0.8:
+    if rand < 0.9:
         ind_image = Image.fromarray(ind)
         _ = ImageDraw.Draw(ind_image)
-        
         if type == 0:
             add_rectangle(_, ind.shape[1], ind.shape[0], size)
         if type == 1:
@@ -202,7 +201,7 @@ def crossover(ind1, ind2):
         else:
             return horizontal_swap(ind1, ind2)
     
-    elif rand < 0.65:  
+    elif rand < 0.7:  
         return blending(ind1, ind2)
     else:  
         return pixelwise_change(ind1, ind2)

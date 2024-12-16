@@ -2,16 +2,17 @@ from arg_parse import get_args
 from utils import *
 import time 
 
+#failures: bigger shapes, different fitness function
 args = get_args()
 
-target_image = Image.open("images/mona_lisa.png").convert("RGBA").resize((args.target_height, args.target_width))
+target_image = Image.open("images/university.jpg").convert("RGBA").resize((args.target_height, args.target_width))
 print(target_image.size)
 
 population = create_population(args.population_size, target_height=args.target_height, target_width=args.target_width, size=args.size, type=args.shape)
 frames = []
 
 start = time.time()
-for generation in range(args.generation):
+for generation in range(args.generations):
         
     fitnesses = []
     for ind in population:
@@ -20,8 +21,18 @@ for generation in range(args.generation):
     
     elites_ids = np.argsort(fitnesses)[-args.n_elites:]
     new_population = []
-    tournament_size = max(2, generation // 1000)
-    #tournament_size = 5
+    tournament_size = max(2, int((generation / args.generations) * 10))
+
+    if generation % 100 == 0:
+        best_ind = (population[elites_ids[-1]])
+        frames.append(best_ind)
+        end = time.time()
+        #print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses)}, time per 100 generations: {(end - start):.2f}")
+        print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses):.2f}")
+        mean = sum(fitnesses) / len(fitnesses)
+        sd = (sum((ind - mean) ** 2 for ind in fitnesses) / (len(fitnesses) - 1)) ** 0.5
+        #print(f"Generation: {generation}, fitness {mean:.3f}, sd {sd:.4f}")
+        start = time.time()
     
     for i in range(args.population_size):
         
@@ -44,17 +55,8 @@ for generation in range(args.generation):
     
     population = new_population
         
-    best_ind = (population[elites_ids[-1]])
-    
-    if generation % 100 == 0:
-        frames.append(best_ind)
-        end = time.time()
-        #print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses)}, time per 100 generations: {(end - start):.2f}")
-        #print(f"Generation: {generation}, avg fitness : {sum(fitnesses) / len(fitnesses):.2f}")
-        print(sum(fitnesses)/len(fitnesses))
-        start = time.time()
         
-'''
+
 imageio.mimsave(f"gifs/{args.gif}.gif", frames)
-plt.imsave("images/best_image.png", best_ind) 
-'''
+plt.imsave("images/university.png", best_ind) 
+
