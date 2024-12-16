@@ -1,12 +1,8 @@
 from PIL import Image, ImageDraw, ImageFont
 import string
-import matplotlib.pyplot as plt
 import numpy as np
 import random
 from skimage.metrics import peak_signal_noise_ratio as psnr
-import imageio
-import cv2
-from skimage.metrics import structural_similarity as ssim
 
 def random_color():
     return "#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
@@ -70,7 +66,7 @@ def add_constant(ind):
     for i in range(n_pixels):
         x = random.randint(0, ind.shape[0]-1)
         y = random.randint(0, ind.shape[1]-1)
-        channel = random.randint(0, 3)  # Random RGBA channel
+        channel = random.randint(0, 2)  # Random RGB channel
         ind[x, y, channel] = np.clip(
             int(ind[x, y, channel]) + random.randint(-10, 10), 0, 255
         )      
@@ -89,7 +85,7 @@ def create_population(population_size, target_height, target_width, size, type):
     initial_population = []
     
     for _ in range(population_size):
-        new_image = Image.new("RGBA", (target_height, target_width), color=random_color2())
+        new_image = Image.new("RGB", (target_height, target_width), color=random_color2())
         img = ImageDraw.Draw(new_image)
         n_shapes = random.randint(5, 10)
         

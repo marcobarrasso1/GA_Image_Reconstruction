@@ -1,11 +1,13 @@
 from arg_parse import get_args
 from utils import *
 import time 
+import imageio
+import matplotlib.pyplot as plt
 
 #failures: bigger shapes, different fitness function
 args = get_args()
 
-target_image = Image.open("images/university.jpg").convert("RGBA").resize((args.target_height, args.target_width))
+target_image = Image.open("target_images/mona_lisa.png").convert("RGB").resize((args.target_height, args.target_width))
 print(target_image.size)
 
 population = create_population(args.population_size, target_height=args.target_height, target_width=args.target_width, size=args.size, type=args.shape)
@@ -58,5 +60,5 @@ for generation in range(args.generations):
         
 
 imageio.mimsave(f"gifs/{args.gif}.gif", frames)
-plt.imsave("images/university.png", best_ind) 
+plt.imsave(f"output_images/{args.gif}.png", best_ind) 
 
