@@ -10,7 +10,6 @@ def random_color():
 def random_color2():
     return random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
 
-# square side = 5
 def add_rectangle(image, target_height, target_width, size):
     x, y = random.randint(0, target_width-1), random.randint(0, target_height-1)
     rect_width, rect_height = random.randint(4, size), random.randint(4, size) 
@@ -29,13 +28,12 @@ def add_text(image, target_height, target_width, size):
     
 
 def add_circle(image, target_height, target_width, radius):
-    circle_center = (random.randint(0, target_height-1), random.randint(0, target_width-1))  # Center of the circle
+    circle_center = (random.randint(0, target_height-1), random.randint(0, target_width-1)) 
     radius = random.randint(2, 16)
 
     left_up_point = (circle_center[0] - radius, circle_center[1] - radius)
     right_down_point = (circle_center[0] + radius, circle_center[1] + radius)
 
-    # Draw the circle
     image.ellipse([left_up_point, right_down_point], fill=random_color2())
     
     
@@ -61,7 +59,7 @@ def add_triangle(image, target_height, target_width):
     
     
 def add_constant(ind):
-    n_pixels = 50
+    n_pixels = 200
     
     for i in range(n_pixels):
         x = random.randint(0, ind.shape[0]-1)
