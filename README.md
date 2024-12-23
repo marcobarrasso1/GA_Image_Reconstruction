@@ -35,7 +35,7 @@ $$
 $$
 
 ## Selection Type
-Tournament selection with size starting from 2 and gradually increases up to 10 as the number of generation goes on.
+Tournament selection with size starting from 2 and gradually increases, as the number of generation goes on, up to 10.
 
 ## Crossover
 Different categories of crossovers:
