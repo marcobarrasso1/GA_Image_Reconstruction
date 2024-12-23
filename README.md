@@ -31,6 +31,10 @@ Where:
 - $$
   \text{MSE} = \frac{1}{H \cdot W} \sum_{x=1}^{H} \sum_{y=1}^{W} \left( I_t(x, y) - I_r(x, y) \right)^2
   $$
+
+$$
+  \text{MSE} = \frac{1}{H \cdot W} \sum_{x=1}^{H} \sum_{y=1}^{W} \left( I_t(x, y) - I_r(x, y) \right)^2
+$$
   
 Tournament selection: size starting from 2 and gradually increases up to 10
 * Crossover probability: 0.8
