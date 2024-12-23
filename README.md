@@ -28,8 +28,7 @@ $$
 Where:
 - **MAX**: Maximum possible pixel value (e.g., 255 for 8-bit images).
 - **MSE**: Mean Squared Error, defined as:
-- 
-  $$
+- $$
   \text{MSE} = \frac{1}{H \cdot W} \sum_{x=1}^{H} \sum_{y=1}^{W} \left( I_t(x, y) - I_r(x, y) \right)^2
   $$
   
