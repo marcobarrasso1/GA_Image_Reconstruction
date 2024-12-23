@@ -5,6 +5,12 @@ It iteratively change the properties of the shapes (how many, position, color, s
 
 ## Requirements
 
-* 
+* scikit-image
+* imageio
+* numpy
+* opencv-python
+* Pillow
+* scikit-image
+* matplotlib
 
 
