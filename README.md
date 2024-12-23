@@ -25,6 +25,10 @@ $$
 \text{PSNR} = 10 \cdot \log_{10} \left( \frac{\text{MAX}^2}{\text{MSE}} \right)
 $$
 
+$$
+\text{PSNR} = 10 \cdot \log_{10} \left( \frac{\text{MAX}^2}{\text{MSE}} \right)
+$$
+
 Where:
 - **MAX**: Maximum possible pixel value (e.g., 255 for 8-bit images).
 - **MSE**: Mean Squared Error, defined as:
