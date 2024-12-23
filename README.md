@@ -27,7 +27,7 @@ $$
 
 
 Where:
-- **MAX**: Maximum possible pixel value (e.g., 255 for 8-bit images).
+- **MAX**: Maximum possible pixel value (255 for 8-bit images).
 - **MSE**: Mean Squared Error, defined as:
   
 $$
@@ -39,6 +39,19 @@ Tournament selection with size starting from 2 and gradually increases up to 10 
 
 ## Crossover
 Different categories of crossovers:
-* First category: 
+* First category: randomly choose a row/column, everithing up to that row/column is from one parent the rest is from the other. Randomly select half of the rows/columns of an inidvidual and swap them between the parents. I assigned an equal probability to all of this crossover inside the category.
+* Second category: blending, that is combining two images(parents) into a single image(child) by mixing their pixel values.
+* Third category: for each pixel of the child randomly choose between one of the parents.
+
+Overall crossover probability equal to 0.8 with a probability of 0.2, 0.3, 0.5 for the different categories respectively.
+
+## Mutation
+Two types of mutation:
+* Adding a shape of random color, size and position
+* Adding a random value to a subset of the pixels.
+
+Overall mutation probability equal to 0.2, 0.9 for the first type 0.1 for the second one.
+
+
 
   
