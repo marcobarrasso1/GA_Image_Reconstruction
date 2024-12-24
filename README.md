@@ -57,7 +57,9 @@ Two types of mutation:
 Overall mutation probability equal to 0.2, 0.9 for the first type 0.1 for the second one.
 
 ## Results
-I run the algorithm for 10k generation and calculate the fitness in order to see which one of the shapes will better approximate the target image:
+I run the algorithm for 10k generation and calculate the fitness in order to see which one of the shapes will better approximate the target image, the mona lisa in my case.
+
+
 
 <img src="target_images/mona_lisa.png" alt="Description" width="256" height="256"/>
 
