@@ -66,6 +66,6 @@ I also created some gifs of the evolution:
 
 
 <img src="target_images/mona_lisa.png" alt="Description" width="256" height="256"/> 
-![Alt text](gifs/circles_lisa.gif)
 
+<img src="gifs/circles_lisa.gif" alt="Description" width="256" height="256"/> 
   
