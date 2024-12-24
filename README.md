@@ -6,6 +6,10 @@ It evoleves images by iteratively change the properties of the shapes (how many,
 
 ## Requirements
 
+```
+pip install -r requirements.txt
+```
+
 * scikit-image
 * imageio
 * numpy
