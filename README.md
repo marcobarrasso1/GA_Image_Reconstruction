@@ -71,7 +71,7 @@ I also created some gifs of the evolution:
 
 And also tried to recreate other images:
 
-<img src="target_images/results2.png" alt="Description" width="650" height="450"/> 
+<img src="output_images/results2.png" alt="Description" width="650" height="450"/> 
 
 
 
