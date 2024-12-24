@@ -67,5 +67,5 @@ I also created some gifs of the evolution:
 
 <img src="target_images/mona_lisa.png" alt="Description" width="256" height="256"/> 
 
-<img src="gifs/circles_lisa.gif" alt="Description" width="256" height="256"/> <img src="gifs/rectangles_lisa.gif" alt="Description" width="256" height="256"/> <img src="gifs/triangles_lisa.gif" alt="Description" width="256" height="256"/> <img src="gifs/text_lisa.gif" alt="Description" width="256" height="256"/> 
+<img src="gifs/circles_lisa.gif" alt="Description" width="230" height="230"/> <img src="gifs/rectangles_lisa.gif" alt="Description" width="230" height="230"/> <img src="gifs/triangles_lisa.gif" alt="Description" width="230" height="230"/> <img src="gifs/text_lisa.gif" alt="Description" width="230" height="230"/> 
   
