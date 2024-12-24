@@ -65,6 +65,7 @@ I run the algorithm for 10k generation and calculate the fitness in order to see
 I also created some gifs of the evolution:
 
 
-<img src="target_images/mona_lisa.png" alt="Description" width="256" height="256"/>  <img src="gifs/mona_lisa.png" alt="Description" width="256" height="256"/>
+<img src="target_images/mona_lisa.png" alt="Description" width="256" height="256"/> 
+<img src="gifs/rectangles_lisa.png" alt="Description" width="256" height="256"/> <img src="gifs/circles_lisa.png" alt="Description" width="256" height="256"/> <img src="gifs/triangles_lisa.png" alt="Description" width="256" height="256"/> <img src="gifs/text_lisa.png" alt="Description" width="256" height="256"/>
 
   
