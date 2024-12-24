@@ -68,4 +68,13 @@ I also created some gifs of the evolution:
 <img src="target_images/mona_lisa.png" alt="Description" width="256" height="256"/> 
 
 <img src="gifs/circles_lisa.gif" alt="Description" width="220" height="220"/> <img src="gifs/rectangles_lisa.gif" alt="Description" width="220" height="220"/> <img src="gifs/triangles_lisa.gif" alt="Description" width="220" height="220"/> <img src="gifs/text_lisa.gif" alt="Description" width="220" height="220"/> 
+
+And also tried to recreate other images:
+
+<img src="target_images/results2.png" alt="Description" width="650" height="450"/> 
+
+
+
+
+
   
