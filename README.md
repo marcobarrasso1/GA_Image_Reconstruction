@@ -59,7 +59,7 @@ Overall mutation probability equal to 0.2, 0.9 for the first type 0.1 for the se
 ## Results
 I run the algorithm for 10k generation and calculate the fitness in order to see which one of the shapes will better approximate the target image, the mona lisa in my case.
 
-<img src="output_images/results.png" alt="Description"/>
+<img src="output_images/results.png" alt="Description" width="450" height="350"/>
 
 
 
