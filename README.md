@@ -69,7 +69,7 @@ I also created some gifs of the evolution:
 
 <img src="gifs/circles_lisa.gif" alt="Description" width="220" height="220"/> <img src="gifs/rectangles_lisa.gif" alt="Description" width="220" height="220"/> <img src="gifs/triangles_lisa.gif" alt="Description" width="220" height="220"/> <img src="gifs/text_lisa.gif" alt="Description" width="220" height="220"/> 
 
-And also tried to recreate other images:
+Since the previous results and hyperparamters were chosen with the mona lisa as target image i decided to see if the algorithm generalizes well by recreating other images:
 
 <img src="output_images/results2.png" alt="Description" width="850" height="550"/> 
 
